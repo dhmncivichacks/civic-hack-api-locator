@@ -1,0 +1,5 @@
+bin
+obj
+packages
+/CivicHackApiLocator.WebApi/*.user
+/*.suo
