@@ -16,11 +16,29 @@ namespace CivicHackApiLocator.Data
         /// </summary>
         public static ChalContext Create()
         {
-            var contracts = new List<Contract>
+            var contracts = CreateContracts();
+            contracts[0].Id = 1;
+            contracts[1].Id = 2;
+
+            var implementations = CreateImplementations(contracts);
+
+            var mockContext = new Mock<ChalContext>();
+
+            mockContext.Setup(x => x.Contracts).Returns(CreateMockSet(contracts));
+            mockContext.Setup(x => x.Implementations).Returns(CreateMockSet(implementations));
+
+            return mockContext.Object;
+        }
+
+        /// <summary>
+        /// Creates mock contracts
+        /// </summary>
+        public static List<Contract> CreateContracts()
+        {
+            return new List<Contract>
             {
                 new Contract
                 {
-                    Id = 1,
                     Description = "Searches for properties with the given address",
                     JsonSchema = "TODO",
                     Parameters = new List<ContractParameter>
@@ -37,12 +55,10 @@ namespace CivicHackApiLocator.Data
                             Description = "Street Name",
                             Required = true
                         }
-                    },
-                    RequestMode = RequestMode.Get
+                    }
                 },
                 new Contract
                 {
-                    Id = 2,
                     Description = "Returns Property Information",
                     JsonSchema = "TODO",
                     Parameters = new List<ContractParameter>
@@ -56,40 +72,48 @@ namespace CivicHackApiLocator.Data
                     }
                 }
             };
+        }
 
-            var locations = new List<ImplementationLocation>
-            {
-                new ImplementationLocation { ZipCode = "54911" },
-                new ImplementationLocation { ZipCode = "54912" },
-                new ImplementationLocation { ZipCode = "54913" },
-                new ImplementationLocation { ZipCode = "54914" },
-                new ImplementationLocation { ZipCode = "54915" },
-                new ImplementationLocation { ZipCode = "54916" },
-                new ImplementationLocation { ZipCode = "54919" }
-            };
-
-            var implementations = new List<Implementation>
+        /// <summary>
+        /// Creates mock implementations
+        /// </summary>
+        public static List<Implementation> CreateImplementations(List<Contract> contracts)
+        {
+            return new List<Implementation>
             {
                 new Implementation
                 {
                     ApiUrl = "http://appletonapi.appspot.com/search?h={h}&s={s}",
                     Contract = contracts[0],
-                    Locations = locations
+                    Locations = new List<ImplementationLocation>
+                    {
+                        new ImplementationLocation { ZipCode = "54911" },
+                        new ImplementationLocation { ZipCode = "54912" },
+                        new ImplementationLocation { ZipCode = "54913" },
+                        new ImplementationLocation { ZipCode = "54914" },
+                        new ImplementationLocation { ZipCode = "54915" },
+                        new ImplementationLocation { ZipCode = "54916" },
+                        new ImplementationLocation { ZipCode = "54919" }
+                    },
+                    RequestMode = RequestMode.Get
                 },
                 new Implementation
                 {
                     ApiUrl = "http://appletonapi.appspot.com/property/{propertyId}",
                     Contract = contracts[1],
-                    Locations = locations
+                    Locations = new List<ImplementationLocation>
+                    {
+                        new ImplementationLocation { ZipCode = "54911" },
+                        new ImplementationLocation { ZipCode = "54912" },
+                        new ImplementationLocation { ZipCode = "54913" },
+                        new ImplementationLocation { ZipCode = "54914" },
+                        new ImplementationLocation { ZipCode = "54915" },
+                        new ImplementationLocation { ZipCode = "54916" },
+                        new ImplementationLocation { ZipCode = "54919" }
+                    },
+                    RequestMode = RequestMode.Get
                 }
             };
-
-            var mockContext = new Mock<ChalContext>();
-
-            mockContext.Setup(x => x.Contracts).Returns(CreateMockSet(contracts));
-            mockContext.Setup(x => x.Implementations).Returns(CreateMockSet(implementations));
-
-            return mockContext.Object;
         }
 
         /// <summary>

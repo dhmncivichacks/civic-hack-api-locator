@@ -22,6 +22,6 @@ namespace CivicHackApiLocator.Model
         /// <summary>
         /// Gets or sets the implementation
         /// </summary>
-        public Implementation Implementation { get; set; }
+        public virtual Implementation Implementation { get; set; }
     }
 }

@@ -42,11 +42,6 @@ namespace CivicHackApiLocator.WebApi.Models
         public string JsonSchema { get; set; }
 
         /// <summary>
-        /// Gets or sets the way the request should be formed
-        /// </summary>
-        public RequestMode RequestMode { get; set; }
-
-        /// <summary>
         /// Gets or sets a list of parameters to the query
         /// </summary>
         public List<ContractParameter> Parameters { get; set; }

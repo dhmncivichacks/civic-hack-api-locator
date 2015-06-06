@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AutoMapper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CivicHackApiLocator.WebApi.Models
 {
@@ -26,6 +28,12 @@ namespace CivicHackApiLocator.WebApi.Models
         /// Gets or sets the zip codes this implementation supports
         /// </summary>
         public List<string> ZipCodes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the way the request should be formed
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public RequestMode RequestMode { get; set; }
 
         /// <summary>
         /// Automapper profile

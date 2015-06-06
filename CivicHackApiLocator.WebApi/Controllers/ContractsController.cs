@@ -16,9 +16,9 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Initializes a new instance of the ContractsController class
         /// </summary>
-        public ContractsController()
+        public ContractsController(ChalContext context)
         {
-            _context = MockChalContext.Create();
+            _context = context;
         }
 
         /// <summary>

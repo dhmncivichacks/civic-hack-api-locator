@@ -4,3 +4,4 @@ packages
 /CivicHackApiLocator.WebApi/*.user
 /*.suo
 *.user
+TransformWebConfig

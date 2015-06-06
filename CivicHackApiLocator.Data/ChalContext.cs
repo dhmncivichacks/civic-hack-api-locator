@@ -10,6 +10,11 @@ namespace CivicHackApiLocator.Data
     /// </summary>
     public class ChalContext : DbContext
     {
+        public ChalContext()
+        {
+            Database.SetInitializer(new ChalContextInitializer());
+        }
+
         public virtual DbSet<Contract> Contracts { get; set; }
 
         public virtual DbSet<ContractParameter> ContractParameters { get; set; }

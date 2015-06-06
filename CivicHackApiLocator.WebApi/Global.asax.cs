@@ -1,7 +1,10 @@
 ﻿using System.Web;
 using System.Web.Http;
 using AutoMapper;
+using CivicHackApiLocator.Data;
 using CivicHackApiLocator.WebApi.Models;
+using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
 
 namespace CivicHackApiLocator.WebApi
 {
@@ -23,6 +26,15 @@ namespace CivicHackApiLocator.WebApi
                 x.AddProfile<ContractParameter.ContractParameterProfile>();
                 x.AddProfile<Implementation.ImplementationProfile>();
             });
+
+
+            // Set up SimpleInjector...
+            var container = new Container();
+            container.RegisterWebApiRequest(MockChalContext.Create);
+            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+            container.Verify();
+
+            GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
         }
     }
 }

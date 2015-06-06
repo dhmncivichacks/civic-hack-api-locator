@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChalContext.cs" />
+    <Compile Include="ChalContextInitializer.cs" />
     <Compile Include="MockChalContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

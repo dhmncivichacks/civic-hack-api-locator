@@ -17,9 +17,9 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Initializes a new instance of the ImplementationsController class
         /// </summary>
-        public ImplementationsController()
+        public ImplementationsController(ChalContext context)
         {
-            _context = MockChalContext.Create();
+            _context = context;
         }
 
         /// <summary>
