@@ -25,7 +25,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Returns implementations that are valid for the given zip code
         /// </summary>
-        [Route("implementations/byzipcode/{id}")]
+        [Route("api/implementations/byzipcode/{id}")]
         public IEnumerable<Implementation> ByZipCode(string id)
         {
             return
@@ -36,7 +36,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Returns implementations of the given contract
         /// </summary>
-        [Route("implementations/bycontract/{id}")]
+        [Route("api/implementations/bycontract/{id}")]
         public IEnumerable<Implementation> ByContract(int id)
         {
             return Mapper.Map<IEnumerable<Implementation>>(_context.Implementations.Where(x => x.Contract.Id == id));
