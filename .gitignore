@@ -3,3 +3,4 @@ obj
 packages
 /CivicHackApiLocator.WebApi/*.user
 /*.suo
+*.user
