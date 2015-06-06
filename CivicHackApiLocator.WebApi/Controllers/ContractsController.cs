@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
+using AutoMapper;
 using CivicHackApiLocator.Data;
-using CivicHackApiLocator.Model;
+using CivicHackApiLocator.WebApi.Models;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -26,7 +26,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// </summary>
         public IEnumerable<Contract> Get()
         {
-            return _context.Contracts.ToList();
+            return Mapper.Map<IEnumerable<Contract>>(_context.Contracts);
         }
     }
 }

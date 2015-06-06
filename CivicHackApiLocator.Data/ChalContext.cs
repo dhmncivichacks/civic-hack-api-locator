@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using CivicHackApiLocator.Model;
+
 #pragma warning disable 1591
 
 namespace CivicHackApiLocator.Data

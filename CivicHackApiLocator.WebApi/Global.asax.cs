@@ -1,5 +1,7 @@
 ﻿using System.Web;
 using System.Web.Http;
+using AutoMapper;
+using CivicHackApiLocator.WebApi.Models;
 
 namespace CivicHackApiLocator.WebApi
 {
@@ -14,6 +16,13 @@ namespace CivicHackApiLocator.WebApi
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            Mapper.Initialize(x =>
+            {
+                x.AddProfile<Contract.ContractProfile>();
+                x.AddProfile<ContractParameter.ContractParameterProfile>();
+                x.AddProfile<Implementation.ImplementationProfile>();
+            });
         }
     }
 }

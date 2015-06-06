@@ -20,7 +20,8 @@ namespace CivicHackApiLocator.Data
             {
                 new Contract
                 {
-                    Description = "Returns Property Information",
+                    Id = 1,
+                    Description = "Searches for properties with the given address",
                     JsonSchema = "TODO",
                     Parameters = new List<ContractParameter>
                     {
@@ -41,6 +42,7 @@ namespace CivicHackApiLocator.Data
                 },
                 new Contract
                 {
+                    Id = 2,
                     Description = "Returns Property Information",
                     JsonSchema = "TODO",
                     Parameters = new List<ContractParameter>

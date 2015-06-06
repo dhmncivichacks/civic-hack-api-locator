@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
 using CivicHackApiLocator.Data;
-using CivicHackApiLocator.Model;
+using CivicHackApiLocator.WebApi.Models;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -27,7 +28,18 @@ namespace CivicHackApiLocator.WebApi.Controllers
         [Route("implementations/byzipcode/{id}")]
         public IEnumerable<Implementation> ByZipCode(string id)
         {
-            return _context.Implementations.Where(x => x.Locations.Any(y => y.ZipCode == id));
+            return
+                Mapper.Map<IEnumerable<Implementation>>(
+                    _context.Implementations.Where(x => x.Locations.Any(y => y.ZipCode == id)));
+        }
+
+        /// <summary>
+        /// Returns implementations of the given contract
+        /// </summary>
+        [Route("implementations/bycontract/{id}")]
+        public IEnumerable<Implementation> ByContract(int id)
+        {
+            return Mapper.Map<IEnumerable<Implementation>>(_context.Implementations.Where(x => x.Contract.Id == id));
         }
 
         /// <summary>
@@ -35,7 +47,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// </summary>
         public Implementation Get(int id)
         {
-            return _context.Implementations.SingleOrDefault(x => x.Id == id);
+            return Mapper.Map<Implementation>(_context.Implementations.SingleOrDefault(x => x.Id == id));
         }
     }
 }
