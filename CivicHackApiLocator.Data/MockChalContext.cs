@@ -19,6 +19,7 @@ namespace CivicHackApiLocator.Data
             var contracts = CreateContracts();
             contracts[0].Id = 1;
             contracts[1].Id = 2;
+            contracts[2].Id = 3;
 
             var implementations = CreateImplementations(contracts);
 
@@ -70,6 +71,24 @@ namespace CivicHackApiLocator.Data
                             Required = true
                         }
                     }
+                },
+                new Contract
+                {
+                    Description = "Returns Crime Information",
+                    JsonSchema = "TODO",
+                    Parameters = new List<ContractParameter>
+                    {
+                        new ContractParameter
+                        {
+                            Name = "start_date",
+                            Description = "Start Date"
+                        },
+                        new ContractParameter
+                        {
+                            Name = "end_date",
+                            Description = "End Date"
+                        }
+                    }
                 }
             };
         }
@@ -101,6 +120,22 @@ namespace CivicHackApiLocator.Data
                 {
                     ApiUrl = "http://appletonapi.appspot.com/property/{propertyId}",
                     Contract = contracts[1],
+                    Locations = new List<ImplementationLocation>
+                    {
+                        new ImplementationLocation { ZipCode = "54911" },
+                        new ImplementationLocation { ZipCode = "54912" },
+                        new ImplementationLocation { ZipCode = "54913" },
+                        new ImplementationLocation { ZipCode = "54914" },
+                        new ImplementationLocation { ZipCode = "54915" },
+                        new ImplementationLocation { ZipCode = "54916" },
+                        new ImplementationLocation { ZipCode = "54919" }
+                    },
+                    RequestMode = RequestMode.Get
+                },
+                new Implementation
+                {
+                    ApiUrl = "http://appletonapi.appspot.com/crimes",
+                    Contract = contracts[2],
                     Locations = new List<ImplementationLocation>
                     {
                         new ImplementationLocation { ZipCode = "54911" },
