@@ -2,7 +2,7 @@
 using System.Web.Http;
 using AutoMapper;
 using CivicHackApiLocator.Data;
-using CivicHackApiLocator.WebApi.Models;
+using CivicHackApiLocator.Data.Entities;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 
@@ -20,13 +20,14 @@ namespace CivicHackApiLocator.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
+            // TODO: Auto-register
             Mapper.Initialize(x =>
             {
-                x.AddProfile<Contract.ContractProfile>();
-                x.AddProfile<ContractParameter.ContractParameterProfile>();
-                x.AddProfile<Implementation.ImplementationProfile>();
+                x.AddProfile<ContractEntity.Profile>();
+                x.AddProfile<ContractParameterEntity.Profile>();
+                x.AddProfile<ImplementationEntity.Profile>();
+                x.AddProfile<ImplementationLocationEntity.Profile>();
             });
-
 
             // Set up SimpleInjector...
             var container = new Container();

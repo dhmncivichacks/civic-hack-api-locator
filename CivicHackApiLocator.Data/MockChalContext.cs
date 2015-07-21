@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using CivicHackApiLocator.Data.Entities;
 using CivicHackApiLocator.Model;
 using Moq;
 
@@ -17,10 +18,6 @@ namespace CivicHackApiLocator.Data
         public static ChalContext Create()
         {
             var contracts = CreateContracts();
-            contracts[0].Id = 1;
-            contracts[1].Id = 2;
-            contracts[2].Id = 3;
-
             var implementations = CreateImplementations(contracts);
 
             var mockContext = new Mock<ChalContext>();
@@ -34,59 +31,57 @@ namespace CivicHackApiLocator.Data
         /// <summary>
         /// Creates mock contracts
         /// </summary>
-        public static List<Contract> CreateContracts()
+        public static List<ContractEntity> CreateContracts()
         {
-            return new List<Contract>
+            return new List<ContractEntity>
             {
-                new Contract
+                new ContractEntity
                 {
-                    Description = "Searches for properties with the given address",
-                    JsonSchema = "TODO",
-                    Parameters = new List<ContractParameter>
+                    Id = 1,
+                    ContractName = "upcoming-garbage-recycling-dates",
+                    Description = "Returns upcoming dates for garbage and recycling collection",
+                    ResponseJsonSchema = @"{
+                        ""type"": ""array"",
+                        ""items"": {
+                            ""type"": ""object"",
+                            ""properties"": {
+                                ""collectionType"": {
+                                    ""enum"": [
+                                        ""trash"",
+                                        ""recycling""
+                                    ],
+                                    ""type"": ""string""
+                                },
+                                ""collectionDate"": {
+                                    ""format"": ""date"",
+                                    ""type"": ""string""
+                                }
+                            }
+                        }
+                    }",
+                    Parameters = new List<ContractParameterEntity>
                     {
-                        new ContractParameter
+                        new ContractParameterEntity
                         {
-                            Name = "h",
-                            Description = "House Number",
+                            Name = "addr",
+                            Description = "Address",
+                            Location = ParameterLocation.Query,
+                            Format = ParameterFormat.String,
                             Required = true
                         },
-                        new ContractParameter
+                        new ContractParameterEntity
                         {
-                            Name = "s",
-                            Description = "Street Name",
-                            Required = true
-                        }
-                    }
-                },
-                new Contract
-                {
-                    Description = "Returns Property Information",
-                    JsonSchema = "TODO",
-                    Parameters = new List<ContractParameter>
-                    {
-                        new ContractParameter
-                        {
-                            Name = "propertyId",
-                            Description = "Property ID",
-                            Required = true
-                        }
-                    }
-                },
-                new Contract
-                {
-                    Description = "Returns Crime Information",
-                    JsonSchema = "TODO",
-                    Parameters = new List<ContractParameter>
-                    {
-                        new ContractParameter
-                        {
-                            Name = "start_date",
-                            Description = "Start Date"
+                            Name = "startDate",
+                            Description = "Start Date",
+                            Location = ParameterLocation.Query,
+                            Format = ParameterFormat.Date
                         },
-                        new ContractParameter
+                        new ContractParameterEntity
                         {
-                            Name = "end_date",
-                            Description = "End Date"
+                            Name = "endDate",
+                            Description = "End Date",
+                            Location = ParameterLocation.Query,
+                            Format = ParameterFormat.Date
                         }
                     }
                 }
@@ -96,57 +91,18 @@ namespace CivicHackApiLocator.Data
         /// <summary>
         /// Creates mock implementations
         /// </summary>
-        public static List<Implementation> CreateImplementations(List<Contract> contracts)
+        public static List<ImplementationEntity> CreateImplementations(List<ContractEntity> contracts)
         {
-            return new List<Implementation>
+            return new List<ImplementationEntity>
             {
-                new Implementation
+                new ImplementationEntity
                 {
-                    ApiUrl = "http://appletonapi.appspot.com/search?h={h}&s={s}",
+                    ApiUrl = "http://greenville-wi-api.azurewebsites.net/api/GarbageCollection",
                     Contract = contracts[0],
-                    Locations = new List<ImplementationLocation>
+                    Locations = new List<ImplementationLocationEntity>
                     {
-                        new ImplementationLocation { ZipCode = "54911" },
-                        new ImplementationLocation { ZipCode = "54912" },
-                        new ImplementationLocation { ZipCode = "54913" },
-                        new ImplementationLocation { ZipCode = "54914" },
-                        new ImplementationLocation { ZipCode = "54915" },
-                        new ImplementationLocation { ZipCode = "54916" },
-                        new ImplementationLocation { ZipCode = "54919" }
-                    },
-                    RequestMode = RequestMode.Get
-                },
-                new Implementation
-                {
-                    ApiUrl = "http://appletonapi.appspot.com/property/{propertyId}",
-                    Contract = contracts[1],
-                    Locations = new List<ImplementationLocation>
-                    {
-                        new ImplementationLocation { ZipCode = "54911" },
-                        new ImplementationLocation { ZipCode = "54912" },
-                        new ImplementationLocation { ZipCode = "54913" },
-                        new ImplementationLocation { ZipCode = "54914" },
-                        new ImplementationLocation { ZipCode = "54915" },
-                        new ImplementationLocation { ZipCode = "54916" },
-                        new ImplementationLocation { ZipCode = "54919" }
-                    },
-                    RequestMode = RequestMode.Get
-                },
-                new Implementation
-                {
-                    ApiUrl = "http://appletonapi.appspot.com/crimes",
-                    Contract = contracts[2],
-                    Locations = new List<ImplementationLocation>
-                    {
-                        new ImplementationLocation { ZipCode = "54911" },
-                        new ImplementationLocation { ZipCode = "54912" },
-                        new ImplementationLocation { ZipCode = "54913" },
-                        new ImplementationLocation { ZipCode = "54914" },
-                        new ImplementationLocation { ZipCode = "54915" },
-                        new ImplementationLocation { ZipCode = "54916" },
-                        new ImplementationLocation { ZipCode = "54919" }
-                    },
-                    RequestMode = RequestMode.Get
+                        new ImplementationLocationEntity { ZipCode = "54942" }
+                    }
                 }
             };
         }

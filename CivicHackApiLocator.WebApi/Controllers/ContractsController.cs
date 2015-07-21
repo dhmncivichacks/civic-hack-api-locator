@@ -2,7 +2,7 @@
 using System.Web.Http;
 using AutoMapper;
 using CivicHackApiLocator.Data;
-using CivicHackApiLocator.WebApi.Models;
+using CivicHackApiLocator.Model;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {

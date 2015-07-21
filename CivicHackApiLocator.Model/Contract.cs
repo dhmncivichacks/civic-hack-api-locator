@@ -9,24 +9,18 @@ namespace CivicHackApiLocator.Model
     public enum RequestMode
     {
         /// <summary>HTTP GET</summary>
-        Get,
-        
-        /// <summary>HTTP POST with url encoded body</summary>
-        PostFormUrlEncoded,
-
-        /// <summary>HTTP POST with JSON body</summary>
-        PostJson
+        Get
     }
 
     /// <summary>
     /// A contract defines the way data will be returned by an API
     /// </summary>
     public class Contract
-    {
+    {   
         /// <summary>
-        /// Gets or sets the DB ID
+        /// Gets or sets the publicly visible name of the contract
         /// </summary>
-        public int Id { get; set; }
+        public string ContractName { get; set; }
 
         /// <summary>
         /// Describes the type of data returned by the API
@@ -38,11 +32,16 @@ namespace CivicHackApiLocator.Model
         /// Gets or sets the schema that describes the format that data will be returned in
         /// </summary>
         [Required]
-        public string JsonSchema { get; set; }
+        public string ResponseJsonSchema { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of parameters to the query
+        /// Gets or sets the way the request should be formed
         /// </summary>
-        public virtual List<ContractParameter> Parameters { get; set; }
+        public RequestMode RequestMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets a list of parameters to the contract
+        /// </summary>
+        public List<ContractParameter> Parameters { get; set; }
     }
 }

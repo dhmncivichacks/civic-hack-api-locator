@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
-using CivicHackApiLocator.Model;
+using CivicHackApiLocator.Data.Entities;
+
 
 #pragma warning disable 1591
 
@@ -15,12 +16,12 @@ namespace CivicHackApiLocator.Data
             Database.SetInitializer(new ChalContextInitializer());
         }
 
-        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<ContractEntity> Contracts { get; set; }
 
-        public virtual DbSet<ContractParameter> ContractParameters { get; set; }
+        public virtual DbSet<ContractParameterEntity> ContractParameters { get; set; }
 
-        public virtual DbSet<Implementation> Implementations { get; set; }
+        public virtual DbSet<ImplementationEntity> Implementations { get; set; }
 
-        public virtual DbSet<ImplementationLocation> ImplementationLocations { get; set; }
+        public virtual DbSet<ImplementationLocationEntity> ImplementationLocations { get; set; }
     }
 }

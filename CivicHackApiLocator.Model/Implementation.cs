@@ -9,30 +9,20 @@ namespace CivicHackApiLocator.Model
     public class Implementation
     {
         /// <summary>
-        /// Gets or sets the ID of the entity
-        /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
         /// The contract implemented by the API
         /// </summary>
         public virtual Contract Contract { get; set; }
 
         /// <summary>
-        /// The URL for the API.  If the requestMode is Get, the url should contain placeholders for all parameters.
-        /// For example: http://www.test.com/{param1}?q={param2}
+        /// The URL for the API.  If the contract contains "Path" parameters, they must be included using braces in the URL
+        /// For example: http://www.test.com/widget/{id}
         /// </summary>
         [Required]
         public string ApiUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the way the request should be formed
-        /// </summary>
-        public RequestMode RequestMode { get; set; }
-
-        /// <summary>
         /// The locations covered by this implementation
         /// </summary>
-        public virtual List<ImplementationLocation> Locations { get; set; }
+        public List<ImplementationLocation> Locations { get; set; }
     }
 }

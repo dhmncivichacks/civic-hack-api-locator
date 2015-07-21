@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using CivicHackApiLocator.Data;
-using CivicHackApiLocator.WebApi.Models;
+using CivicHackApiLocator.Model;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -37,17 +37,10 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// Returns implementations of the given contract
         /// </summary>
         [Route("api/implementations/bycontract/{id}")]
-        public IEnumerable<Implementation> ByContract(int id)
+        public IEnumerable<Implementation> ByContract(string id)
         {
-            return Mapper.Map<IEnumerable<Implementation>>(_context.Implementations.Where(x => x.Contract.Id == id));
-        }
-
-        /// <summary>
-        /// Returns information about the implementation with the given ID
-        /// </summary>
-        public Implementation Get(int id)
-        {
-            return Mapper.Map<Implementation>(_context.Implementations.SingleOrDefault(x => x.Id == id));
+            var test = Mapper.Map<IEnumerable<Implementation>>(_context.Implementations.Where(x => x.Contract.ContractName == id));
+            return test;
         }
     }
 }

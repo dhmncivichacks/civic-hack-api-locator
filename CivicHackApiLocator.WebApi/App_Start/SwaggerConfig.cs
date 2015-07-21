@@ -132,7 +132,7 @@ namespace CivicHackApiLocator.WebApi
                         // enum type. Swashbuckle will honor this change out-of-the-box. However, if you use a different
                         // approach to serialize enums as strings, you can also force Swashbuckle to describe them as strings.
                         // 
-                        //c.DescribeAllEnumsAsStrings();
+                        c.DescribeAllEnumsAsStrings(true);
 
                         // Similar to Schema filters, Swashbuckle also supports Operation and Document filters:
                         //
