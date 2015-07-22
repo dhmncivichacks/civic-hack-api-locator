@@ -4,7 +4,7 @@ A project to create an API discovery service that catalogs APIs exposing public 
 
 Born at the first [Appleton Civic Hackathon!](http://dhmncivichacks.blogspot.com/2015/06/day-after-report-dhmn-civic.html)
 
-[Check out a live POC!](https://microsoft-apiapp791157b06a4c498882849b12c3107a77.azurewebsites.net/swagger/ui/index)
+[Check out a live POC!](http://civic-hack-api-locator.azurewebsites.net/)
 
 ## Todo
 
