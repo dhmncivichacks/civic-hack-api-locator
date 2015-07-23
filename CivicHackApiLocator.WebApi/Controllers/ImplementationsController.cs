@@ -4,6 +4,7 @@ using System.Web.Http;
 using AutoMapper;
 using CivicHackApiLocator.Data;
 using CivicHackApiLocator.Model;
+using CivicHackApiLocator.WebApi.Models;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -25,22 +26,34 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Returns implementations that are valid for the given zip code
         /// </summary>
-        [Route("api/implementations/byzipcode/{id}")]
-        public IEnumerable<Implementation> ByZipCode(string id)
+        [Route("api/implementations/byzipcode/{zipCode}")]
+        public IEnumerable<ImplementationDescription> ByZipCode(string zipCode)
         {
-            return
-                Mapper.Map<IEnumerable<Implementation>>(
-                    _context.Implementations.Where(x => x.Locations.Any(y => y.ZipCode == id)));
+            foreach (var imp in _context.Implementations.Where(x => x.Locations.Any(y => y.ZipCode == zipCode)))
+            {
+                yield return new ImplementationDescription(imp);
+            }
         }
 
         /// <summary>
         /// Returns implementations of the given contract
         /// </summary>
-        [Route("api/implementations/bycontract/{id}")]
-        public IEnumerable<Implementation> ByContract(string id)
+        [Route("api/implementations/bycontract/{contractName}")]
+        public IEnumerable<ImplementationDescription> ByContract(string contractName)
         {
-            var test = Mapper.Map<IEnumerable<Implementation>>(_context.Implementations.Where(x => x.Contract.ContractName == id));
-            return test;
+            foreach (var imp in _context.Implementations.Where(x => x.Contract.ContractName == contractName))
+            {
+                yield return new ImplementationDescription(imp);
+            }
+        }
+
+        /// <summary>
+        /// Gets the full description of the implementation
+        /// </summary>
+        [Route("api/implementations/{contractName}/{implementationName}")]
+        public Implementation Get(string contractName, string implementationName)
+        {
+            return Mapper.Map<Implementation>(_context.Implementations.SingleOrDefault(x => x.Contract.ContractName == contractName && x.ImplementationName == implementationName));
         }
     }
 }

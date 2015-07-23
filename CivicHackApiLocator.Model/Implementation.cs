@@ -14,6 +14,11 @@ namespace CivicHackApiLocator.Model
         public virtual Contract Contract { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the implementation
+        /// </summary>
+        public string ImplementationName { get; set; }
+
+        /// <summary>
         /// The URL for the API.  If the contract contains "Path" parameters, they must be included using braces in the URL
         /// For example: http://www.test.com/widget/{id}
         /// </summary>

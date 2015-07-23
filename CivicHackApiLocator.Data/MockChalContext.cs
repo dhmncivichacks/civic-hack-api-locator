@@ -98,6 +98,7 @@ namespace CivicHackApiLocator.Data
                 new ImplementationEntity
                 {
                     ApiUrl = "http://greenville-wi-api.azurewebsites.net/api/GarbageCollection",
+                    ImplementationName = "greenville-wi-garbage",
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
                     {
