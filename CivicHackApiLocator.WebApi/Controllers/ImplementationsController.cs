@@ -26,7 +26,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Returns implementations that are valid for the given zip code
         /// </summary>
-        [Route("api/implementations/byzipcode/{zipCode}")]
+        [Route("api/implementations/byzipcode/{zipCode}"), HttpGet]
         public IEnumerable<ImplementationDescription> ByZipCode(string zipCode)
         {
             foreach (var imp in _context.Implementations.Where(x => x.Locations.Any(y => y.ZipCode == zipCode)))
@@ -38,7 +38,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Returns implementations of the given contract
         /// </summary>
-        [Route("api/implementations/bycontract/{contractName}")]
+        [Route("api/implementations/bycontract/{contractName}"), HttpGet]
         public IEnumerable<ImplementationDescription> ByContract(string contractName)
         {
             foreach (var imp in _context.Implementations.Where(x => x.Contract.ContractName == contractName))
@@ -50,8 +50,8 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// <summary>
         /// Gets the full description of the implementation
         /// </summary>
-        [Route("api/implementations/{contractName}/{implementationName}")]
-        public Implementation Get(string contractName, string implementationName)
+        [Route("api/implementations/{contractName}/{implementationName}"), HttpGet]
+        public Implementation Implementations(string contractName, string implementationName)
         {
             return Mapper.Map<Implementation>(_context.Implementations.SingleOrDefault(x => x.Contract.ContractName == contractName && x.ImplementationName == implementationName));
         }
