@@ -104,6 +104,21 @@ namespace CivicHackApiLocator.Data
                     {
                         new ImplementationLocationEntity { ZipCode = "54942" }
                     }
+                },
+                new ImplementationEntity
+                {
+                    ApiUrl = "http://appletonapi.appspot.com/garbageCollection",
+                    ImplementationName = "appleton-wi-garbage",
+                    Contract = contracts[0],
+                    Locations = new List<ImplementationLocationEntity>
+                    {
+                        new ImplementationLocationEntity { ZipCode = "54911" },
+                        new ImplementationLocationEntity { ZipCode = "54912" },
+                        new ImplementationLocationEntity { ZipCode = "54913" },
+                        new ImplementationLocationEntity { ZipCode = "54914" },
+                        new ImplementationLocationEntity { ZipCode = "54915" },
+                        new ImplementationLocationEntity { ZipCode = "54919" }
+                    }
                 }
             };
         }
