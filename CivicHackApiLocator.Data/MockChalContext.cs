@@ -107,7 +107,7 @@ namespace CivicHackApiLocator.Data
                 },
                 new ImplementationEntity
                 {
-                    ApiUrl = "http://appletonapi.appspot.com/garbageCollection",
+                    ApiUrl = "http://appletonapi.appspot.com/garbagecollection",
                     ImplementationName = "appleton-wi-garbage",
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
