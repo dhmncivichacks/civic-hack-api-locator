@@ -23,7 +23,7 @@ namespace CivicHackApiLocator.Model
         public string ContractName { get; set; }
 
         /// <summary>
-        /// Describes the type of data returned by the API
+        /// Gets or sets a description of the type of data returned by the API
         /// </summary>
         [Required]
         public string Description { get; set; }

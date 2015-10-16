@@ -4,15 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="Mike Rosack">
 
     <title>Civic Hack API Locator</title>
 
-    <!-- Bootstrap core CSS -->
     @Styles.Render("~/bundles/vendorcss")
     @Styles.Render("~/bundles/appcss")
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
 
     <style>
         /* Move down content because we have a fixed navbar that is 50px tall */
@@ -41,11 +44,10 @@
                 </button>
                 <a class="navbar-brand" ui-sref="index">Civic Hack API Locator</a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li><a ui-sref="index">FAQs</a></li>
-                    <li><a target="_chalswagger" href="/swagger">Swagger Spec</a></li>
+                    <li><a ui-sref="faqs">FAQs</a></li>
+                    <li><a ui-sref="swagger">Swagger Spec</a></li>
                     <li><a ui-sref="contracts">Contracts &amp; Implementations</a></li>
                     <li><a ui-sref="apps">Apps</a></li>
                 </ul>
@@ -57,6 +59,9 @@
     
     <script type="text/ng-template" id="/index.html">@Html.Partial("_Templates/_Index")</script>
     <script type="text/ng-template" id="/contracts.html">@Html.Partial("_Templates/_Contracts")</script>
+    <script type="text/ng-template" id="/faqs.html">@Html.Partial("_Templates/_FAQs")</script>
+    <script type="text/ng-template" id="/swagger.html">@Html.Partial("_Templates/_Swagger")</script>
+    <script type="text/ng-template" id="/apps.html">@Html.Partial("_Templates/_Apps")</script>
 
     @Scripts.Render("~/bundles/vendorjs")
     @Scripts.Render("~/bundles/appjs")

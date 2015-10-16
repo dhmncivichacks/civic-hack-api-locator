@@ -19,7 +19,7 @@ namespace CivicHackApiLocator.Data.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// The locations covered by this implementation
+        /// Gets or sets the locations covered by this implementation
         /// </summary>
         public new virtual List<ImplementationLocationEntity> Locations { get; set; }
 

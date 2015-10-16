@@ -25,7 +25,7 @@ namespace CivicHackApiLocator.Model
         /// <summary>Base-64 encoded byte array</summary>
         Byte,
 
-        /// <summary>true/false</summary>
+        /// <summary>true or false</summary>
         Boolean,
 
         /// <summary>Date only in YYYY-MM-DD format</summary>

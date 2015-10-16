@@ -12,12 +12,13 @@ namespace CivicHackApiLocator.WebApi.Models
     public class ImplementationDescription
     {
         /// <summary>
-        /// Initializes a new instance of the ImplementationDescription  class
+        /// Initializes a new instance of the ImplementationDescription class
         /// </summary>
         public ImplementationDescription(Implementation imp)
         {
             this.ContractName = imp.Contract.ContractName;
             this.ContractDescription = imp.Contract.Description;
+            this.HomepageUrl = imp.HomepageUrl;
             this.ImplementationName = imp.ImplementationName;
             this.ImplementationApiUrl = imp.ApiUrl;
         }
@@ -38,7 +39,12 @@ namespace CivicHackApiLocator.WebApi.Models
         public string ImplementationName { get; set; }
 
         /// <summary>
-        /// Gets or sets the URL of the implementation
+        /// Gets or sets the homepage URL of the implementation
+        /// </summary>
+        public string HomepageUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the API URL of the implementation
         /// </summary>
         public string ImplementationApiUrl { get; set; }
     }

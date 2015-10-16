@@ -10,7 +10,6 @@ namespace CivicHackApiLocator.Data
         /// <summary>
         /// Seeds the database with data
         /// </summary>
-        /// <param name="context"></param>
         protected override void Seed(ChalContext context)
         {
             var contracts = MockChalContext.CreateContracts();

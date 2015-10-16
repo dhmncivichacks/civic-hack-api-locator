@@ -16,7 +16,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }

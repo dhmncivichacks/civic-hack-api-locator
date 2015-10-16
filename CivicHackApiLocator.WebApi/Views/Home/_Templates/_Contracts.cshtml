@@ -1,6 +1,6 @@
-﻿<h1 ng-hide="vm.contracts">Loading, please wait...</h1>
-<div ng-show="vm.contracts">
-    <div class="container">
+﻿<div class="container">
+    <h1 ng-hide="vm.contracts">Loading, please wait...</h1>
+    <div ng-show="vm.contracts">
         <h1>Contracts</h1>
         <div class="row">
             <div class="form-group">
@@ -44,12 +44,14 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>URL</th>
+                            <th>Homepage URL</th>
+                            <th>API Operation URL</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="imp in vm.implementations">
                             <td>{{imp.implementationName}}</td>
+                            <td><a href="{{imp.homepageUrl}}" target="_blank">{{imp.homepageUrl}}</a></td>
                             <td><a href="{{imp.implementationApiUrl}}" target="_blank">{{imp.implementationApiUrl}}</a></td>
                         </tr>
                     </tbody>

@@ -1,0 +1,9 @@
+﻿.text-right-md {
+    text-align:right;
+}
+
+@media (max-width: 991px) {
+    .text-right-md {
+        text-align: left;
+    }
+}

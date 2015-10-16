@@ -11,14 +11,14 @@ namespace CivicHackApiLocator.WebApi.Controllers
     /// </summary>
     public class ContractsController : ApiController
     {
-        private readonly ChalContext _context;
+        private readonly ChalContext context;
 
         /// <summary>
         /// Initializes a new instance of the ContractsController class
         /// </summary>
         public ContractsController(ChalContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         /// </summary>
         public IEnumerable<Contract> Get()
         {
-            return Mapper.Map<IEnumerable<Contract>>(_context.Contracts);
+            return Mapper.Map<IEnumerable<Contract>>(this.context.Contracts);
         }
     }
 }

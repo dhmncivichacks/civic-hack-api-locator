@@ -1,0 +1,43 @@
+﻿<div class="container">
+    <h1>FAQs</h1>
+    <h2>How do I add my API?</h2>
+    <p>
+        Currently, we don't have automatic registration set up, but if you're interested in helping us out please contact me at <a href="mailto:mrosack@sacknet.org">mrosack@sacknet.org</a>.
+        In general, the process goes like this:
+    </p>
+
+    <ul>
+        <li>
+            <b>Decide what Contract you want to implement:</b>  Contracts are common specifications for how someone should make a request to an API operation, and the format in which
+            the data from the operation will be returned.  You can view all of our contracts on the <a ui-sref="contracts">Contracts and Implementations</a> page.  If there's a contract
+            that matches the data you're looking to provide, you can move on to step 2.  Otherwise, a new contract needs to be created for your data.
+        </li>
+        <li>
+            <b>Implement the Contract:</b>  Your API operation should accept the same parameters and return data in the same format described by the contract.  If your operation accepts
+            extra parameters or returns extra data that should be OK, as long as your API is a superset of the contract specified.
+        </li>
+        <li>
+            <b>Let us know what areas your Implementation serves:</b> We need to know what geographical areas your API supports so we can redirect apps to your API when a request for
+            a location you serve comes in.  Currently we support claiming areas by Zip Code, but other options will be coming in the future.
+        </li>
+    </ul>
+    <h2>How do I use the API locator if I'm writing an app?</h2>
+    <p>
+        First, if you haven't looked at our <a href="/swagger">Swagger Documentation</a> yet, please do so.  Then, head over to the <a ui-sref="contracts">Contracts and Implementations</a>
+        page to figure out which contract you want to use in your app.  After that, it's a two step process:
+    </p>
+    <ul>
+        <li>
+            <b>Find the correct API to call for a given location:</b> You'll need to ask the locator API to tell you if there's an API that can serve your request.  To do so,
+            call the <b>Implementations by Zipcode</b> operation, passing the zipcode containing the data you want to query.  For example, if you wanted to query some data in
+            Greenville, WI, you'd send a GET request to <a href="/api/implementations/byzipcode/54942">http://civic-hack-api-locator.azurewebsites.net/api/implementations/byzipcode/54942</a>.
+            Look for an entry in that result containing a contractName equal to the name of the contract you want to use, and if that exists you can move on to step 2!  Otherwise, you'll
+            need to inform your end user that data isn't available for that zip code.
+        </li>
+        <li>
+            <b>Call the API Implementation returned from the previous call:</b>  If the previous call returned valid data, you can send a request to the URL contained in the implementationApiUrl
+            property in the format defined by the contract.  All implementors of a contract should accept and return data in the same format, so you should be able to talk to any API that implements
+            the contract you're using!
+        </li>
+    </ul>
+</div>

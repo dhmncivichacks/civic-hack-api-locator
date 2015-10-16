@@ -11,6 +11,18 @@
 			    url: '/',
 			    templateUrl: '/index.html'
 			})
+            .state('faqs', {
+                url: '/faqs',
+                templateUrl: '/faqs.html'
+            })
+            .state('swagger', {
+                url: '/swagger',
+                templateUrl: '/swagger.html'
+            })
+            .state('apps', {
+                url: '/apps',
+                templateUrl: '/apps.html'
+            })
             .state('contracts', {
                 url: '/contracts',
                 templateUrl: '/contracts.html',

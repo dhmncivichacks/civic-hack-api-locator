@@ -15,7 +15,6 @@ namespace CivicHackApiLocator.WebApi
         /// <summary>
         /// Registers routes with the routing engine
         /// </summary>
-        /// <param name="routes"></param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -23,9 +22,7 @@ namespace CivicHackApiLocator.WebApi
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }
 }
-
