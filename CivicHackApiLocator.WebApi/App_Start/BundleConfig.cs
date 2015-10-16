@@ -16,7 +16,8 @@ namespace CivicHackApiLocator.WebApi
             bundles.Add(new ScriptBundle("~/bundles/vendorjs").Include(
                         "~/bower_components/jquery/dist/jquery.js",
                         "~/bower_components/bootstrap/dist/js/bootstrap.js",
-                        "~/bower_components/angular/angular.js"));
+                        "~/bower_components/angular/angular.js",
+                        "~/bower_components/angular-ui-router/release/angular-ui-router.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/appjs").IncludeDirectory("~/Scripts", "*.js", true));
 
