@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\contracts.controller.js" />
     <Content Include="Scripts\app.module.js" />
     <Content Include="Scripts\app.route.js" />
     <Content Include="Web.config" />
@@ -180,6 +181,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Templates\_Index.cshtml" />
+    <Content Include="Views\Home\_Templates\_Contracts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

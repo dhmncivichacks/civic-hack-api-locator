@@ -1,0 +1,60 @@
+﻿<h1 ng-hide="vm.contracts">Loading, please wait...</h1>
+<div ng-show="vm.contracts">
+    <div class="container">
+        <h1>Contracts</h1>
+        <div class="row">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Select Contract:</label>
+                <div class="col-sm-10">
+                    <select ng-options="contract as contract.contractName for contract in vm.contracts" ng-model="vm.selectedContract" ng-change="vm.getContractImplementations()" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div ng-show="vm.selectedContract">
+            <div class="row" style="margin-top:30px;">
+                <div class="col-md-4">
+                    <h3 style="margin-top:0;">{{vm.selectedContract.contractName}}</h3>
+                    <p><b>Description:</b> {{vm.selectedContract.description}}</p>
+                    <p><b>Request Mode:</b> {{vm.selectedContract.requestMode}}</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 style="margin-top:0;">Parameters:</h4>
+                    <ul>
+                        <li ng-repeat="parameter in vm.selectedContract.parameters">
+                            <b>{{parameter.name}}</b><br />
+                            <ul>
+                                <li><b>Description:</b> {{parameter.description}}</li>
+                                <li><b>Required:</b> {{parameter.required}}</li>
+                                <li><b>Format:</b> {{parameter.format}}</li>
+                                <li><b>Location:</b> {{parameter.location}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 style="margin-top:0;">Response Schema:</h4>
+                    <pre>{{vm.contractJson() | json}}</pre>
+                </div>
+            </div>
+            <hr />
+            <h2 ng-hide="vm.implementations">Loading Implementations, please wait...</h2>
+            <div ng-show="vm.implementations">
+                <h2>Implementations of {{vm.selectedContract.contractName}}</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="imp in vm.implementations">
+                            <td>{{imp.implementationName}}</td>
+                            <td><a href="{{imp.implementationApiUrl}}" target="_blank">{{imp.implementationApiUrl}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

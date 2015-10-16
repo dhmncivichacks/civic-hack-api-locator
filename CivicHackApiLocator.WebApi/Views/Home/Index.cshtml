@@ -39,13 +39,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Civic Hack API Locator</a>
+                <a class="navbar-brand" ui-sref="index">Civic Hack API Locator</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contracts &amp; Implementations</a></li>
+                    <li><a ui-sref="index">FAQs</a></li>
+                    <li><a target="_chalswagger" href="/swagger">Swagger Spec</a></li>
+                    <li><a ui-sref="contracts">Contracts &amp; Implementations</a></li>
+                    <li><a ui-sref="apps">Apps</a></li>
                 </ul>
             </div>
         </div>
@@ -54,6 +56,7 @@
     <div ui-view></div>
     
     <script type="text/ng-template" id="/index.html">@Html.Partial("_Templates/_Index")</script>
+    <script type="text/ng-template" id="/contracts.html">@Html.Partial("_Templates/_Contracts")</script>
 
     @Scripts.Render("~/bundles/vendorjs")
     @Scripts.Render("~/bundles/appjs")
