@@ -24,7 +24,7 @@ namespace CivicHackApiLocator.WebApi
             bundles.Add(new StyleBundle("~/bundles/vendorcss").Include(
                       "~/bower_components/bootstrap/dist/css/bootstrap.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/appcss").IncludeDirectory("~/Content", "*.css", true));
+            bundles.Add(new StyleBundle("~/bundles/appcss").IncludeDirectory("~/Content", "*.css", true));
         }
     }
 }

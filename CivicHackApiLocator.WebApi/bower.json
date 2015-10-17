@@ -1,9 +1,10 @@
 {
-  "name": "CivicHackApiLocator.WebApi",
-  "private": true,
-  "dependencies": {
-    "bootstrap": "3.3.5",
-    "angular": "1.4.7",
-    "angular-ui-router": "~0.2.15"
-  }
+    "name": "CivicHackApiLocator.WebApi",
+    "private": true,
+    "dependencies": {
+        "jquery": "1.11.3",
+        "bootstrap": "3.3.5",
+        "angular": "1.4.7",
+        "angular-ui-router": "~0.2.15"
+    }
 }

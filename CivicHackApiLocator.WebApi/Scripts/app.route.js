@@ -3,7 +3,7 @@
 
     angular
 		.module('chal')
-		.config(routeConfig);
+		.config(['$stateProvider', '$urlRouterProvider', routeConfig]);
 
     function routeConfig($stateProvider, $urlRouterProvider) {
         $stateProvider

@@ -3,7 +3,7 @@
 
     angular
 		.module('chal')
-		.controller('ContractsController', ContractsController);
+		.controller('ContractsController', ['$http', ContractsController]);
 
     /* @ngInject */
     function ContractsController($http) {
