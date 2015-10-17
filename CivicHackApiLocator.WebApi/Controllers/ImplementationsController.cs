@@ -38,6 +38,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
 
         /// <summary>
         /// Returns implementations that are valid for the given address
+        /// DEPRECATED - REMOVE AFTER CHRIS MERGES PULL REQUEST
         /// </summary>
         [Route("api/implementations/byaddress/{address}"), HttpGet]
         public IEnumerable<ImplementationDescription> ByAddress(string address)
@@ -52,12 +53,46 @@ namespace CivicHackApiLocator.WebApi.Controllers
                 if (zipComponent != null)
                 {
                     var zip = zipComponent.LongName;
-                    
+
                     if (zip.Length > 5)
                         zip = zip.Substring(0, 5);
 
                     return this.ByZipCode(zip);
                 }
+            }
+
+            return new List<ImplementationDescription>();
+        }
+
+        /// <summary>
+        /// Returns implementations that are valid for the given address
+        /// </summary>
+        [Route("api/implementations"), HttpGet]
+        public IEnumerable<ImplementationDescription> Search(string addr = null, string zipCode = null)
+        {
+            if (!string.IsNullOrEmpty(addr))
+            {
+                var geocoder = new GoogleGeocoder();
+                var geocodeResponse = geocoder.Geocode(addr).FirstOrDefault();
+
+                if (geocodeResponse != null)
+                {
+                    var zipComponent = geocodeResponse.Components.First(x => x.Types.Contains(GoogleAddressType.PostalCode));
+
+                    if (zipComponent != null)
+                    {
+                        var zip = zipComponent.LongName;
+
+                        if (zip.Length > 5)
+                            zip = zip.Substring(0, 5);
+
+                        return this.ByZipCode(zip);
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(zipCode))
+            {
+                return this.ByZipCode(zipCode);
             }
 
             return new List<ImplementationDescription>();
