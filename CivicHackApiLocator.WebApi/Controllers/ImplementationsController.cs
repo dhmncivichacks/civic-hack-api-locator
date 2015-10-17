@@ -5,7 +5,7 @@ using AutoMapper;
 using CivicHackApiLocator.Data;
 using CivicHackApiLocator.Model;
 using CivicHackApiLocator.WebApi.Models;
-using USAddress;
+using Geocoding.Google;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -42,13 +42,25 @@ namespace CivicHackApiLocator.WebApi.Controllers
         [Route("api/implementations/byaddress/{address}"), HttpGet]
         public IEnumerable<ImplementationDescription> ByAddress(string address)
         {
-            var parsedAddress = AddressParser.Default.ParseAddress(address);
-            var zip = parsedAddress.Zip ?? string.Empty;
+            var geocoder = new GoogleGeocoder();
+            var geocodeResponse = geocoder.Geocode(address).FirstOrDefault();
 
-            if (zip.Length > 5)
-                zip = zip.Substring(0, 5);
+            if (geocodeResponse != null)
+            {
+                var zipComponent = geocodeResponse.Components.First(x => x.Types.Contains(GoogleAddressType.PostalCode));
 
-            return this.ByZipCode(zip);
+                if (zipComponent != null)
+                {
+                    var zip = zipComponent.LongName;
+                    
+                    if (zip.Length > 5)
+                        zip = zip.Substring(0, 5);
+
+                    return this.ByZipCode(zip);
+                }
+            }
+
+            return new List<ImplementationDescription>();
         }
 
         /// <summary>
