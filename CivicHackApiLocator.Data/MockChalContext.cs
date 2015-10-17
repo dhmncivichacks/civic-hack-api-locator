@@ -121,6 +121,17 @@ namespace CivicHackApiLocator.Data
                         new ImplementationLocationEntity { ZipCode = "54915" },
                         new ImplementationLocationEntity { ZipCode = "54919" }
                     }
+                },
+                new ImplementationEntity
+                {
+                    ApiUrl = "http://outagamie-county-api.azurewebsites.net/garbagecollection",
+                    HomepageUrl = "http://outagamie-county-api.azurewebsites.net",
+                    ImplementationName = "outagamie-county-wi-garbage",
+                    Contract = contracts[0],
+                    Locations = new List<ImplementationLocationEntity>
+                    {
+                        new ImplementationLocationEntity { ZipCode = "54130" }
+                    }
                 }
             };
         }
