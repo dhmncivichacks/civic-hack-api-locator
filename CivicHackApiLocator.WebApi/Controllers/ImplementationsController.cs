@@ -5,6 +5,7 @@ using AutoMapper;
 using CivicHackApiLocator.Data;
 using CivicHackApiLocator.Model;
 using CivicHackApiLocator.WebApi.Models;
+using USAddress;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -33,6 +34,21 @@ namespace CivicHackApiLocator.WebApi.Controllers
             {
                 yield return new ImplementationDescription(imp);
             }
+        }
+
+        /// <summary>
+        /// Returns implementations that are valid for the given address
+        /// </summary>
+        [Route("api/implementations/byaddress/{address}"), HttpGet]
+        public IEnumerable<ImplementationDescription> ByAddress(string address)
+        {
+            var parsedAddress = AddressParser.Default.ParseAddress(address);
+            var zip = parsedAddress.Zip ?? string.Empty;
+
+            if (zip.Length > 5)
+                zip = zip.Substring(0, 5);
+
+            return this.ByZipCode(zip);
         }
 
         /// <summary>
