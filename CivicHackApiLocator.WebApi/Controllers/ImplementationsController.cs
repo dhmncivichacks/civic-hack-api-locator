@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using CivicHackApiLocator.Data;
 using CivicHackApiLocator.Model;
 using CivicHackApiLocator.WebApi.Models;
 using Geocoding.Google;
+using Swashbuckle.Swagger.Annotations;
 
 namespace CivicHackApiLocator.WebApi.Controllers
 {
@@ -38,36 +41,9 @@ namespace CivicHackApiLocator.WebApi.Controllers
 
         /// <summary>
         /// Returns implementations that are valid for the given address
-        /// DEPRECATED - REMOVE AFTER CHRIS MERGES PULL REQUEST
-        /// </summary>
-        [Route("api/implementations/byaddress/{address}"), HttpGet]
-        public IEnumerable<ImplementationDescription> ByAddress(string address)
-        {
-            var geocoder = new GoogleGeocoder();
-            var geocodeResponse = geocoder.Geocode(address).FirstOrDefault();
-
-            if (geocodeResponse != null)
-            {
-                var zipComponent = geocodeResponse.Components.First(x => x.Types.Contains(GoogleAddressType.PostalCode));
-
-                if (zipComponent != null)
-                {
-                    var zip = zipComponent.LongName;
-
-                    if (zip.Length > 5)
-                        zip = zip.Substring(0, 5);
-
-                    return this.ByZipCode(zip);
-                }
-            }
-
-            return new List<ImplementationDescription>();
-        }
-
-        /// <summary>
-        /// Returns implementations that are valid for the given address
         /// </summary>
         [Route("api/implementations"), HttpGet]
+        [SwaggerResponse(HttpStatusCode.BadRequest, Type = typeof(GenericErrorResponse))]
         public IEnumerable<ImplementationDescription> Search(string addr = null, string zipCode = null)
         {
             if (!string.IsNullOrEmpty(addr))
@@ -89,13 +65,15 @@ namespace CivicHackApiLocator.WebApi.Controllers
                         return this.ByZipCode(zip);
                     }
                 }
+
+                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, new GenericErrorResponse { Message = "Invalid Address" }));
             }
             else if (!string.IsNullOrEmpty(zipCode))
             {
                 return this.ByZipCode(zipCode);
             }
 
-            return new List<ImplementationDescription>();
+            throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, new GenericErrorResponse { Message = "Must pass either the addr or zipCode query parameter!" }));
         }
 
         /// <summary>
