@@ -47,5 +47,21 @@ namespace CivicHackApiLocator.WebApi.Models
         /// Gets or sets the API URL of the implementation
         /// </summary>
         public string ImplementationApiUrl { get; set; }
+
+        /// <summary>
+        /// Gets the base URL from the ImplementationApiUrl
+        /// </summary>
+        public string ImplementationBaseUrl
+        {
+            get { return new Uri(this.ImplementationApiUrl).GetLeftPart(UriPartial.Authority); }
+        }
+
+        /// <summary>
+        /// Gets the path from the ImplementationApiUrl
+        /// </summary>
+        public string ImplementationPath
+        {
+            get { return new Uri(this.ImplementationApiUrl).PathAndQuery; }
+        }
     }
 }
