@@ -130,7 +130,15 @@ namespace CivicHackApiLocator.Data
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
                     {
-                        new ImplementationLocationEntity { ZipCode = "54130" }
+                        new ImplementationLocationEntity { ZipCode = "54130" },
+                        new ImplementationLocationEntity { ZipCode = "54113" },
+                        new ImplementationLocationEntity { ZipCode = "54136" },
+                        new ImplementationLocationEntity { ZipCode = "54140" },
+                        new ImplementationLocationEntity { ZipCode = "54931" },
+                        new ImplementationLocationEntity { ZipCode = "54942" },
+                        new ImplementationLocationEntity { ZipCode = "54944" },
+                        new ImplementationLocationEntity { ZipCode = "54985" },
+                        new ImplementationLocationEntity { ZipCode = "54165" }
                     }
                 }
             };
