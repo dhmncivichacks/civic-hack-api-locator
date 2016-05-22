@@ -97,8 +97,8 @@ namespace CivicHackApiLocator.Data
             {
                 new ImplementationEntity
                 {
-                    ApiUrl = "http://greenville-wi-api.azurewebsites.net/api/GarbageCollection",
-                    HomepageUrl = "http://greenville-wi-api.azurewebsites.net",
+                    ApiUrl = "https://greenville-wi-api.azurewebsites.net/api/GarbageCollection",
+                    HomepageUrl = "https://greenville-wi-api.azurewebsites.net",
                     ImplementationName = "greenville-wi-garbage",
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
@@ -108,8 +108,8 @@ namespace CivicHackApiLocator.Data
                 },
                 new ImplementationEntity
                 {
-                    ApiUrl = "http://appletonapi.appspot.com/garbagecollection",
-                    HomepageUrl = "http://appletonapi.appspot.com",
+                    ApiUrl = "https://appletonapi.appspot.com/garbagecollection",
+                    HomepageUrl = "https://appletonapi.appspot.com",
                     ImplementationName = "appleton-wi-garbage",
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
@@ -124,8 +124,8 @@ namespace CivicHackApiLocator.Data
                 },
                 new ImplementationEntity
                 {
-                    ApiUrl = "http://outagamie-county-api.azurewebsites.net/garbagecollection",
-                    HomepageUrl = "http://outagamie-county-api.azurewebsites.net",
+                    ApiUrl = "https://outagamie-county-api.azurewebsites.net/garbagecollection",
+                    HomepageUrl = "https://outagamie-county-api.azurewebsites.net",
                     ImplementationName = "outagamie-county-wi-garbage",
                     Contract = contracts[0],
                     Locations = new List<ImplementationLocationEntity>
