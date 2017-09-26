@@ -7,3 +7,4 @@ packages
 TransformWebConfig
 bower_components
 StyleCop.Cache
+/.vs
