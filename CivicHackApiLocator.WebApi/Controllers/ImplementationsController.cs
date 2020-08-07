@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -48,7 +49,7 @@ namespace CivicHackApiLocator.WebApi.Controllers
         {
             if (!string.IsNullOrEmpty(addr))
             {
-                var geocoder = new GoogleGeocoder();
+                var geocoder = new GoogleGeocoder(ConfigurationManager.AppSettings["GoogleApiKey"]);
                 var geocodeResponse = geocoder.Geocode(addr).FirstOrDefault();
 
                 if (geocodeResponse != null)
